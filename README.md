@@ -65,23 +65,34 @@ Our data does not contain any `NaN` values and no missing entries.
 
 Here are some very basic statistics we extracted from the data which will be useful for our final visualizations. The first one consists of the total number of points of the top 5 countries in hand-picked years: 1990, 2010, 2015, 2017. 
 
+![image](https://github.com/com-480-data-visualization/project-2024-Maths-Olympiviz/blob/master/image-1.png)
 
 We can see some pretty surprising results with countries we would not necessarily expect to make it to the top 10.
 
 The following pie-chart depicts the total number of gold medals in the years __1984-2017 (left)__ and __2010-2017 (right)__
+![image](https://github.com/com-480-data-visualization/project-2024-Maths-Olympiviz/blob/master/image-2.png)
 
 
 Some other basic analysis we did was look at some countries who were awarded the "Honorable mention":
 
-2010 - Belgium - Cambodia - Sri Lanka - Tajikistan - Austria
-2017 - Finland - Colombia - Macau - Switzerland - Syria
+| 2010 | 2017 |
+| ---- | ------- |
+| Belgium | Finland
+| Cambodia | Colombia
+| Sri-Lanka | Macau
+| Tajikistan | Switzerland
+| Austria | Syria
+
 
 Average points per participant in 2017 for the top 5 countries out of 6 problems, each worth 7 points
-Korea - 28.33
-China - 26.5 
-Vietnam - 25.83
-USA - 24.66
-Iran - 23.66
+
+| Country | Average points per participant |
+| ---------- | ------ |
+| Korea | 28.33 |
+| China | 26.5 |
+| Vietnam | 25.83 |
+| USA | 24.66 |
+| Iran | 23.66 |
 
 We also looked into the percentage of female participants per country as well as some visual representation of countries' GDP.
 ![image](https://github.com/com-480-data-visualization/project-2024-Maths-Olympiviz/assets/73081373/acd936d6-b67b-46f1-9eaf-50c6a9fc93e0)
