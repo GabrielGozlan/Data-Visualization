@@ -10,6 +10,26 @@
 	<meta name="description" content="Welcome to Data Visualization">
 	<meta name="author" content="K Lis">
 
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+	<script src="https://unpkg.com/topojson@3"></script>
+
+	<style>
+        /* Basic styling for the tooltip */
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            width: auto;
+            height: auto;
+            padding: 2px;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+            opacity: 0;
+        }
+    </style>
+
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -42,6 +62,9 @@
 	Read more <a href="description.html">about our model</a>
 	or the <a href="data.html">sources of our data</a>.
 	</p>
+
+	<div id="map"></div>
+	<script src="script.js"></script>
 
 	<div class="box">
 		<h4>How to use</h4>

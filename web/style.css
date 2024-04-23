@@ -58,6 +58,41 @@ The various units of measurement available in CSS:
 	margin-right: auto;
 }
 
+.svg-container {
+    width: 100%;  /* Makes sure the SVG container fills the div */
+    height: auto;  /* Keeps the aspect ratio intact */
+}
+
+#map {
+    width: calc(100vw - 40px); /* Subtract desired total horizontal margin from 100vw */
+    margin: 0 auto; /* This will center the map and maintain equal margins on both sides */
+    height: 500px; /* You can adjust the height as needed */
+    padding: 0; /* Remove padding if you want the map edges to align with the margins strictly */
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    text-align: left;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    font: 14px 'Arial', sans-serif;
+    background: white;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Country hover styling */
+.country:hover {
+    stroke: #666;
+    stroke-width: 1.5px;
+}
+
 /* Links: apply our theme color and remove underline */
 a {
 	color: var(--theme-color-dark);
