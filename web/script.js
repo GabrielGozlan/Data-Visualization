@@ -1,5 +1,7 @@
 const width = 960; // Set the width for the SVG element
 const height = 500; 
+const legendWidth = 360;  // Width of the gradient rectangle
+const legendXPosition = 20;  // Starting x position of the gradient rectangle
 const mapUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
 const gdpDataUrl = '../data/world-data-2023.csv'; 
 
@@ -49,6 +51,7 @@ Promise.all([
     const colorDomain = d3.extent(Array.from(gdpLookup.values()));
     console.log('Color Domain:', colorDomain);
 
+    // use log because of huge values in gdp
     const colorScale = d3.scaleSequentialLog(d3.interpolateBlues)
         .domain(colorDomain)
         .clamp(true);
@@ -75,13 +78,12 @@ Promise.all([
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-    // Only run this code after the colorScale is fully defined
     const legendSvg = d3.select("#legend-container")
         .append("svg:svg")
         .attr("width", 400) // Width of the legend
         .attr("height", 60); // Height of the legend (with some padding for the labels)
 
-    // Define the SVG gradient
+    // Define the SVG gradient (for the legend of the map)
     const gradient = legendSvg.append('defs')
         .append('linearGradient')
         .attr('id', 'gradient')
@@ -98,9 +100,6 @@ Promise.all([
         .attr('offset', '100%')
         .attr('stop-color', colorScale.range()[1]); // End color
 
-    console.log("COLOUR SCALE");
-    console.log(colorScale.range());
-
     // Draw the rectangle that will represent the gradient
     legendSvg.append('rect')
         .attr('x', 20) // Position from the left of the SVG
@@ -108,44 +107,89 @@ Promise.all([
         .attr('width', 360) // Width of the gradient rect
         .attr('height', 20) // Height of the gradient rect
         .style('fill', 'url(#gradient)');
+    
+    // Append text for the start of the scale (min GDP)
+    legendSvg.append("text")
+    .attr("class", "legend-text")
+    .attr("x", 20) // Align with the left edge of the gradient rect
+    .attr("y", 50) // Position below the gradient rect
+    .style("text-anchor", "start") // Align text to the start
+    .text(d3.format(".2s")(colorScale.domain()[0])); // Format and display min GDP
 
-    console.log(d3.select("#legend-container"));
+    // Append text for the middle of the scale (median GDP)
+    legendSvg.append("text")
+    .attr("class", "legend-text")
+    .attr("x", 200) // Position in the middle of the gradient rect
+    .attr("y", 50)
+    .style("text-anchor", "middle") // Center the text
+    .text(d3.format(".2s")(d3.median(Array.from(gdpLookup.values())))); // Format and display median GDP
+
+    // Append text for the end of the scale (max GDP)
+    legendSvg.append("text")
+    .attr("class", "legend-text")
+    .attr("x", 380) // Align with the right edge of the gradient rect
+    .attr("y", 50)
+    .style("text-anchor", "end") // Align text to the end
+    .text(d3.format(".2s")(colorScale.domain()[1])); // Format and display max GDP
+
+    const legendScale = d3.scaleLog()
+                            .domain(colorScale.domain())  // Use the same domain as your color scale
+                            .range([legendXPosition, legendXPosition + legendWidth])
+                            .clamp(true);
+
+    // marker line that shows the country gdp on the scale
+    const markerLine = legendSvg.append("line")
+    .attr("x1", legendXPosition)
+    .attr("x2", legendXPosition)
+    .attr("y1", 5)  // Slightly above the rectangle
+    .attr("y2", 35) // Slightly below the rectangle
+    .style("stroke", "red")  // Red is visible, change as needed
+    .style("stroke-width", 2)
+    .style("visibility", "hidden");  // Initially hidden
+
 
     svg.selectAll(".country")
-        .data(countries)
-        .enter().append("path")
-        .attr("class", "country")
-        .attr("d", path)
-        .attr("fill", d => {
-            const correctedName = countryNameMap[d.properties.name] || d.properties.name;
-            const gdp = gdpLookup.get(correctedName);
-            if (gdp === undefined) {
-                // console.warn(`No GDP data available for '${d.properties.name}' corrected as '${correctedName}'`);
-                return '#ccc';  // Default color for missing data
-            }
-            const color = colorScale(gdp);
-            // console.log(`${correctedName}: GDP = ${gdp}, Color = ${color}`);
-            return color;
-        })
-        .attr("stroke", "white")
-        .attr("stroke-width", 0.5)
-        .on("mouseover", function(event, d) {
-            tooltip.transition()
-                .duration(200)
-                .style("opacity", 0.9);
-            tooltip.html(d.properties.name + (gdpLookup.get(d.properties.name) ? ": GDP $" + gdpLookup.get(d.properties.name) : ": No data"))
-                .style("left", (event.pageX) + "px")
-                .style("top", (event.pageY - 28) + "px");
-            d3.select(this)
-                .style("stroke", "black")
-                .style("stroke-width", 1.5);
-        })
-        .on("mouseout", function(d) {
-            tooltip.transition()
-                .duration(500)
-                .style("opacity", 0);
-            d3.select(this)
-                .style("stroke", "white")
-                .style("stroke-width", 0.5);
-        });
+    .data(countries)
+    .enter().append("path")
+    .attr("class", "country")
+    .attr("d", path)
+    .attr("fill", d => {
+        const correctedName = countryNameMap[d.properties.name] || d.properties.name;
+        const gdp = gdpLookup.get(correctedName);
+        return gdp ? colorScale(gdp) : '#ccc';  // Default color for missing data
+    })
+    .attr("stroke", "white")
+    .attr("stroke-width", 0.5)
+    .on("mouseover", function(event, d) {
+        tooltip.transition()
+        .duration(200)
+        .style("opacity", 0.9);
+        tooltip.html(d.properties.name + (gdpLookup.get(d.properties.name) ? ": GDP $" + d3.format(".2s")(gdpLookup.get(d.properties.name)) : ": No data"))
+        .style("left", (event.pageX) + "px")
+        .style("top", (event.pageY - 28) + "px");
+                              
+        // Determine the GDP position on the scale and update the marker line
+        const gdp = gdpLookup.get(d.properties.name);
+        if (gdp !== undefined) {
+        const xPos = legendScale(gdp);
+        markerLine.attr("x1", xPos)
+            .attr("x2", xPos)
+            .style("visibility", "visible");
+        }
+    
+        d3.select(this)
+        .style("stroke", "black")
+        .style("stroke-width", 1.5);
+    })
+    .on("mouseout", function(d) {
+        tooltip.transition()
+        .duration(500)
+        .style("opacity", 0);
+        d3.select(this)
+        .style("stroke", "white")
+        .style("stroke-width", 0.5);
+    
+        // Hide the marker line when not hovering
+        markerLine.style("visibility", "hidden");
+    });
 });
