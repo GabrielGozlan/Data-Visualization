@@ -55,12 +55,12 @@ Promise.all([
     const colorScale = d3.scaleSequentialLog(d3.interpolateBlues)
         .domain(colorDomain)
         .clamp(true);
-
+    
     // Create SVG container
     const svg = d3.select("#map").append("svg")
                   .attr("width", width)
                   .attr("height", height)
-                  .call(d3.zoom().scaleExtent([1, 8]).on("zoom", function (event) {
+                  .call(d3.zoom().scaleExtent([1, 8]).on("zoom", function (event) { // Allows zooming from 1x to 8x
                       svg.attr("transform", event.transform);
                   }))
                   .append("g");
@@ -191,5 +191,6 @@ Promise.all([
     
         // Hide the marker line when not hovering
         markerLine.style("visibility", "hidden");
-    });
+    })
+    .translateExtent([[-width * 0.5, -height * 0.5], [width * 1.5, height * 1.5]]);
 });
