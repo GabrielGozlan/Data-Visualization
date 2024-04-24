@@ -63,11 +63,20 @@ The various units of measurement available in CSS:
     height: auto;  /* Keeps the aspect ratio intact */
 }
 
-#map {
-    width: calc(100vw - 40px); /* Subtract desired total horizontal margin from 100vw */
-    margin: 0 auto; /* This will center the map and maintain equal margins on both sides */
-    height: 500px; /* You can adjust the height as needed */
-    padding: 0; /* Remove padding if you want the map edges to align with the margins strictly */
+#legend-container {
+    background-color: lightgrey; /* Temporary background color for testing */
+    width: 400px; /* Set a specific width */
+    height: 60px; /* Set a specific height */
+	display: block;
+}
+
+.legend-axis text {
+    font-size: 0.75em; /* Adjust text size for the legend axis */
+}
+
+#map svg {
+    border: 7px solid transparent;
+    border-image: radial-gradient(#f51e1e, #9913e7) 1 stretch;
 }
 
 /* Tooltip styling */

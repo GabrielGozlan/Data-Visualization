@@ -18,7 +18,6 @@ const countryNameMap = {
   };
 
 // Load and display the world map
-
 Promise.all([
     d3.json(mapUrl),
     d3.csv(gdpDataUrl)
@@ -32,19 +31,20 @@ Promise.all([
         const parsedGDP = parseFloat(cleanGDP);
 
         if (isNaN(parsedGDP)) {
-            console.error(`GDP parse error for ${d.Country}: Original GDP - '${originalGDP}', Cleaned GDP - '${cleanGDP}'`);
+            // console.error(`GDP parse error for ${d.Country}: Original GDP - '${originalGDP}', Cleaned GDP - '${cleanGDP}'`);
         } else {
             const countryName = countryNameMap[d.Country.trim()] || d.Country.trim();
             gdpLookup.set(countryName, parsedGDP);
-            console.log(`Parsed and stored GDP for ${countryName}: ${parsedGDP}`);
+            // console.log(`Parsed and stored GDP for ${countryName}: ${parsedGDP}`);
         }
     });
     // Check for parsing errors or mismatches in country names
-    gdpData.forEach(d => {
-        if (isNaN(d.GDP)) {
-            console.error('GDP parse error for', d.Country, d.GDP);
-        }
-    });
+    // gdpData.forEach(d => {
+    //     if (isNaN(d.GDP)) {
+    //         console.error('GDP parse error for', d.Country, d.GDP);
+    //     }
+    // });
+
     // Create color scale
     const colorDomain = d3.extent(Array.from(gdpLookup.values()));
     console.log('Color Domain:', colorDomain);
@@ -52,11 +52,6 @@ Promise.all([
     const colorScale = d3.scaleSequentialLog(d3.interpolateBlues)
         .domain(colorDomain)
         .clamp(true);
-
-    // Manually test the color scale with min, max, and a mid-range GDP value
-    console.log('Color for min GDP:', colorScale(colorDomain[0]));
-    console.log('Color for max GDP:', colorScale(colorDomain[1]));
-    console.log('Color for mid-range GDP:', colorScale((colorDomain[0] + colorDomain[1])));
 
     // Create SVG container
     const svg = d3.select("#map").append("svg")
@@ -80,6 +75,42 @@ Promise.all([
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+    // Only run this code after the colorScale is fully defined
+    const legendSvg = d3.select("#legend-container")
+        .append("svg:svg")
+        .attr("width", 400) // Width of the legend
+        .attr("height", 60); // Height of the legend (with some padding for the labels)
+
+    // Define the SVG gradient
+    const gradient = legendSvg.append('defs')
+        .append('linearGradient')
+        .attr('id', 'gradient')
+        .attr('x1', '0%')
+        .attr('x2', '100%')
+        .attr('y1', '0%')
+        .attr('y2', '0%');
+
+    gradient.append('stop')
+        .attr('offset', '0%')
+        .attr('stop-color', colorScale.range()[0]); // Start color
+
+    gradient.append('stop')
+        .attr('offset', '100%')
+        .attr('stop-color', colorScale.range()[1]); // End color
+
+    console.log("COLOUR SCALE");
+    console.log(colorScale.range());
+
+    // Draw the rectangle that will represent the gradient
+    legendSvg.append('rect')
+        .attr('x', 20) // Position from the left of the SVG
+        .attr('y', 10) // Position from the top of the SVG
+        .attr('width', 360) // Width of the gradient rect
+        .attr('height', 20) // Height of the gradient rect
+        .style('fill', 'url(#gradient)');
+
+    console.log(d3.select("#legend-container"));
+
     svg.selectAll(".country")
         .data(countries)
         .enter().append("path")
@@ -89,11 +120,11 @@ Promise.all([
             const correctedName = countryNameMap[d.properties.name] || d.properties.name;
             const gdp = gdpLookup.get(correctedName);
             if (gdp === undefined) {
-                console.warn(`No GDP data available for '${d.properties.name}' corrected as '${correctedName}'`);
+                // console.warn(`No GDP data available for '${d.properties.name}' corrected as '${correctedName}'`);
                 return '#ccc';  // Default color for missing data
             }
             const color = colorScale(gdp);
-            console.log(`${correctedName}: GDP = ${gdp}, Color = ${color}`);
+            // console.log(`${correctedName}: GDP = ${gdp}, Color = ${color}`);
             return color;
         })
         .attr("stroke", "white")
