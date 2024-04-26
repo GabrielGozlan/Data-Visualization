@@ -148,7 +148,7 @@ The report can be found here: [Report](data_viz.pdf)
 
 The website can be accessed by opening `web/index.html`
 
-To launch the website, you might have to run `python -m http.server`, or have the `Live Server` extension on VScode and run the HTML selecting `Run with Live Server`
+To access our website locally, you can first clone our project git clone https://github.com/com-480-data-visualization/project-2024-Maths-Olympiviz.git Then, change directory into the folder ./web. Run the following command python -m http.server You can now access our website lcaolly by keying http://0.0.0.0:8000/ into the browser.
 
 
 ## Milestone 3 (31st May, 5pm)
