@@ -139,8 +139,12 @@ https://flourish.studio/blog/line-chart-race/
 
 
 ## Milestone 2 (26th April, 5pm)
-
 **10% of the final grade**
+
+
+The report can be found here: [Report](data_viz.pdf)
+
+The website can be accessed by opening `web/index.html`
 
 
 ## Milestone 3 (31st May, 5pm)
