@@ -146,6 +146,8 @@ The report can be found here: [Report](data_viz.pdf)
 
 The website can be accessed by opening `web/index.html`
 
+To launch the website, you might have to run `python -m http.server`, or have the `Live Server` extension on VScode and run the HTML selecting `Run with Live Server`
+
 
 ## Milestone 3 (31st May, 5pm)
 
