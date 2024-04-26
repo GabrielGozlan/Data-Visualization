@@ -8,14 +8,16 @@
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
+## Accessing our website
+To access our website locally, you can first clone our project
+`git clone https://github.com/com-480-data-visualization/project-2024-Maths-Olympiviz.git`
+Then, change directory into the folder `./web`.
+Run the following command `python -m http.server`
+You can now access our website lcaolly by keying `http://0.0.0.0:8000/` into the browser.
+
 ## Milestone 1 (29th March, 5pm)
 
 **10% of the final grade**
-
-This is a preliminary milestone to let you set up goals for your final project and assess the feasibility of your ideas.
-Please, fill the following sections about your project.
-
-*(max. 2000 characters per section)*
 
 ### Dataset
 
