@@ -35,6 +35,8 @@ html, body, figure {
 	padding: 0;
 	margin: 0;
 	border: 0;
+	max-width: 100%; 
+    overflow-x: hidden; 
 }
 
 /* Default font and size */
