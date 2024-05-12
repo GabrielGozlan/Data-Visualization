@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>Welcome to Math Olympiviz</title>
+	<meta name="description" content="Welcome to Data Visualization">
+	<meta name="author" content="K Lis">
+
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/bar_chart.css">
+	<link rel="stylesheet" href="../css/race_chart.css">
+
+
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://unpkg.com/topojson@3"></script>
+	<script src="https://unpkg.com/simple-statistics@7.8.3/dist/simple-statistics.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+	<script type ="module" src="../js/script.js"></script>
+	<script type="module" src="../js/bar_chart.js"></script>
+	<script type="module" src="../js/race_chart.js"></script>
+
+	
+</head>
+<body>
+
+<nav>
+	<ul class="width-limited">
+		<li><a href="index.html">Home</a></li>
+		<li><a href="description.html">Description</a></li>
+		<li><a href="data.html">Data</a></li>
+		<li><a href="team.html">Team</a></li>
+	</ul>
+</nav>
+
+<header class="title-row">
+	<h1> My Visualization Project </h1>
+</header>
+
+<main class="width-limited">
+	<h4>Introduction</h4>
+	<p>
+	This visualization show xxxx
+	</p>
+	<p>
+	We investigate xxx
+	Read more <a href="description.html">about the problem</a> that we are trying to visualise
+	or the <a href="data.html">sources of our data</a>.
+	</p>
+
+	<div class="box">
+		<h4>How to use the map</h4>
+		<p>
+		This is a world map, and the colour scale shows the GDP of each country.
+		Hover over each country to show their corresponding GDP.
+		</p>
+	</div>
+
+	<div id="legend-container"></div>
+	<div id="map">
+	</div>
+	
+</main>
+
+<figure class="viz-row">
+	<embed class="width-limited" src="viz_plot.svg" />
+</figure>
+
+
+    <div class="chartCard">
+
+        <select id="countrySelect">
+            <!-- Options seront ajoutées dynamiquement en JavaScript -->
+        </select>
+
+        <div class="chartBox">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="chartBox">
+            <canvas id="myChart2"></canvas>
+        </div>
+
+		<div class="chartMenu">
+		<p class="correlation"></p>
+	</div>
+		
+	
+
+    </div>
+
+	
+	<div class="container-race-chart">
+
+		<div class="bg"></div>
+	
+	
+		<div class="race-chart-display">
+	
+			<button id="start_race">Start</button>
+			<button id="stop_race">Stop</button>
+	
+			<div class="selection-year-race-chart">
+				<select id="start_year"></select>
+				<div id="display_year"></div>
+			</div>
+	
+		</div>
+	</div>
+
+
+<div class="width-limited">
+	<h4>Credits</h4>
+	<p>Meet <a href="./team.html">the authors here</a>. The project was created for the <a href="http://edu.epfl.ch/coursebook/en/data-visualization-COM-480">Data Visualization</a> course at EPFL.
+</div>
+
+<footer></footer>
+
+</body>
+</html>
+

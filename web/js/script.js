@@ -3,7 +3,7 @@ const height = 500;
 const legendWidth = 360;  // Width of the gradient rectangle
 const legendXPosition = 20;  // Starting x position of the gradient rectangle
 const mapUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
-const gdpDataUrl = '../data/world-data-2023.csv'; 
+const gdpDataUrl = '../../data/world-data-2023.csv'; 
 
 const countryNameMap = {
     "United States": "United States of America",

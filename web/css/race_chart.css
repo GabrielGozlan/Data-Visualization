@@ -1,0 +1,23 @@
+.container-race-chart{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    
+}
+
+.bg{
+    grid-column: 1/8;
+}
+
+
+.race-chart-display{
+
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.selection-year-race-chart{
+    display: flex;
+    flex-direction: column;
+    grid-row: 7/-1;
+    justify-content: space-between;
+}

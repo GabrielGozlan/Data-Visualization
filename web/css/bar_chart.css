@@ -1,0 +1,70 @@
+/* Basic styling for the tooltip */
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0;
+}
+
+
+* {
+margin: 0;
+padding: 0;
+font-family: sans-serif;
+}
+.chartMenu {
+width: 100vw;
+height: 40px;
+position: absolute;
+align-self: flex-end;
+background: rgba(54, 162, 235, 0);
+color: rgba(54, 162, 235, 1);
+display: flex;
+justify-content: center;
+align-items: flex-end;
+}
+
+.chartCard {
+width: 100vw;
+height: calc(100vh - 40px);
+background: rgba(54, 162, 235, 0.2);
+display: flex;
+align-items: center;
+
+}
+
+p.correlation {
+position: absolute;
+padding: 10px;
+font-size: 20px;
+color: black;
+width: 50ch;
+
+}
+
+.chartBox {
+width: 700px;
+padding: 20px;
+border-radius: 20px;
+border: solid 3px rgba(54, 162, 235, 1);
+background: white;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+margin-right: 10px;
+}
+
+.chartCard select {
+position: absolute;
+justify-self: flex-start;
+align-self: flex-start;
+
+}
