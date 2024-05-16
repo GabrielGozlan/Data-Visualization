@@ -11,6 +11,9 @@ const svg = d3.select(".bg").append("svg")
 
 const xScale = d3.scaleLinear()
 const yScale = d3.scaleBand()
+const xAxis = d3.axisBottom(xScale);
+const yAxis = d3.axisLeft(yScale);
+
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
 let maxTotal = 0; 
@@ -154,13 +157,13 @@ function updateRaceChart(data, transition_duration) {
   svg.selectAll(".y-axis").remove();
 
   
-  const xAxis = d3.axisBottom(xScale);
+  /*const xAxis = d3.axisBottom(xScale);*/
   svg.append("g")
    .attr("transform", "translate(0," + height + ")")
    .attr("class", "x-axis")
    .call(xAxis);
 
-  const yAxis = d3.axisLeft(yScale);
+  /*const yAxis = d3.axisLeft(yScale);*/
   svg.append("g")
    .attr("class", "y-axis")
    .call(yAxis);

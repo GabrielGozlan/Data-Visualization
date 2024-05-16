@@ -194,3 +194,31 @@ Promise.all([
     })
     .translateExtent([[-width * 0.5, -height * 0.5], [width * 1.5, height * 1.5]]);
 });
+
+
+
+// Ajoute un bouton pour afficher les données temporelles
+d3.select("body").append("button")
+  .text("Afficher les données temporelles")
+  .on("click", function() {
+    // Masque la map
+    d3.select("#map").style("visibility", "hidden");
+    // Affiche les données temporelles
+    d3.select("#data-time-container").style("visibility", "visible");
+  });
+
+// Ajoute une fonction pour afficher les données d'un pays
+function showCountryData(country) {
+  // Récupère les données du pays
+  const data = countryData.get(country);
+  // Affiche les données
+  d3.select("#data-time-container").select("p").text(data ? data.join(", ") : "Pas de données disponibles");
+}
+
+// Ajoute un listener sur les pays pour afficher les données
+svg.selectAll(".country")
+  .on("click", function(event, d) {
+    // Affiche les données du pays
+    showCountryData(d.properties.name);
+  });
+
