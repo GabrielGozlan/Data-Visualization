@@ -82,7 +82,6 @@ function initializeMap() {
             .range([legendXPosition, legendXPosition + legendWidth+100])
             .clamp(true);
 
-        markerLineGlobal = createLegend(colorScaleGlobal, legendScale);
 
         svg.selectAll(".country")
             .data(countries)
@@ -110,12 +109,7 @@ function initializeMap() {
                     .style("stroke", "black")
                     .style("stroke-width", 1.5);
 
-                if (gdp) {
-                    markerLineGlobal
-                        .attr("x1", legendScale(gdp))
-                        .attr("x2", legendScale(gdp))
-                        .style("visibility", "visible");
-                }
+               
             })
             .on("mouseout", function() {
                 tooltip.transition()
@@ -125,7 +119,6 @@ function initializeMap() {
                     .style("stroke", "white")
                     .style("stroke-width", 0.5);
 
-                markerLineGlobal.style("visibility", "hidden");
             });
 
         d3.select('#year-slider').on('input', function() {
@@ -169,109 +162,3 @@ function updateMapColors(year) {
     });
 }
 
-function createLegend(colorScale, legendScale) {
-    const legendSvg = d3.select("#legend-container")
-        .append("svg")
-        .attr("width", 600)
-        .attr("height", 60);
-
-    const gradient = legendSvg.append('defs')
-        .append('linearGradient')
-        .attr('id', 'gradient')
-        .attr('x1', '20%')
-        .attr('x2', '100%')
-        .attr('y1', '0%')
-        .attr('y2', '0%');
-
-    gradient.append('stop')
-        .attr('offset', '0%')
-        .attr('stop-color', colorScale.range()[0]);
-
-    gradient.append('stop')
-        .attr('offset', '100%')
-        .attr('stop-color', colorScale.range()[4]);
-
-    legendSvg.append('rect')
-        .attr('x', 20)
-        .attr('y', 10)
-        .attr('width', 360)
-        .attr('height', 20)
-        .style('fill', 'url(#gradient)');
-
-    legendSvg.append("text")
-        .attr("class", "legend-text")
-        .attr("x", 20)
-        .attr("y", 50)
-        .style("text-anchor", "start")
-        .text("Min");
-
-    legendSvg.append("text")
-        .attr("class", "legend-text")
-        .attr("x", 200)
-        .attr("y", 50)
-        .style("text-anchor", "middle")
-        .text("Median");
-
-    legendSvg.append("text")
-        .attr("class", "legend-text")
-        .attr("x", 380)
-        .attr("y", 50)
-        .style("text-anchor", "end")
-        .text("Max");
-
-    const markerLine = legendSvg.append("line")
-        .attr("x1", legendXPosition)
-        .attr("x2", legendXPosition)
-        .attr("y1", 5)
-        .attr("y2", 35)
-        .style("stroke", "red")
-        .style("stroke-width", 2)
-        .style("visibility", "hidden");
-
-    return markerLine;
-}
-
-function updateLegend(colorScale, gdpLookup) {
-    const legendSvg = d3.select("#legend-container").select("svg");
-    const gradient = legendSvg.select('#gradient');
-
-    const colorDomain = d3.extent(Array.from(gdpLookup.values()));
-    console.log("New color domain:", colorDomain);
-    colorScale.domain(colorDomain);
-
-    const legendScale = d3.scaleLog()
-        .domain(colorDomain)
-        .range([legendXPosition, legendXPosition + legendWidth])
-        .clamp(true);
-
-    gradient.select('stop[offset="0%"]')
-        .attr('stop-color', colorScale.range()[0]);
-
-    gradient.select('stop[offset="100%"]')
-        .attr('stop-color', colorScale.range()[4]);
-
-    legendSvg.selectAll(".legend-text").remove();
-
-    legendSvg.append("text")
-        .attr("class", "legend-text")
-        .attr("x", 20)
-        .attr("y", 50)
-        .style("text-anchor", "start")
-        .text(d3.format(".2s")(colorDomain[0]));
-
-    legendSvg.append("text")
-        .attr("class", "legend-text")
-        .attr("x", 200)
-        .attr("y", 50)
-        .style("text-anchor", "middle")
-        .text("Median");
-
-    legendSvg.append("text")
-        .attr("class", "legend-text")
-        .attr("x", 380)
-        .attr("y", 50)
-        .style("text-anchor", "end")
-        .text(d3.format(".2s")(colorDomain[1]));
-
-    markerLineGlobal.style("visibility", "hidden");
-}
