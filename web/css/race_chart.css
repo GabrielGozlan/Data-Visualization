@@ -1,11 +1,24 @@
+:root {
+	/* Yellow */
+	--yellow-low: #fffff2;
+	--background-color: #fcfcd9;
+	--yellow-high: #beb761;
+  
+	/* Blue violet */
+	--blueViolet: #0f3678;
+  
+  }
+
 .container-race-chart{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    position: relative;
+    margin-top: 20vh;
     
 }
 
 .bg{
-    grid-column: 1/8;
+    grid-column: 2/8;
 }
 
 
@@ -13,6 +26,7 @@
 
     display: grid;
     grid-template-rows: repeat(8, 1fr);
+    grid-column: 9/10;
 }
 
 .selection-year-race-chart{
@@ -21,3 +35,54 @@
     grid-row: 7/-1;
     justify-content: space-between;
 }
+
+
+
+.container-display-year{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-row: 4/5;
+ }
+
+ 
+
+#start_race, 
+#stop_race{
+
+   border-radius: 10px;
+   border: solid 3px var(--yellow-high);
+   color: var(--blueViolet);
+   padding-left: 5ch;
+   padding-right: 5ch;
+   margin-top: 5px;
+}
+
+
+#display_year{
+    margin-top: 5vh;
+    color: var(--blueViolet);
+    font-size: xx-large;
+
+}
+
+#start_year{
+
+    color: var(--blueViolet);
+    font-size: 20px;
+    text-align: center;
+    border-radius: 20px;
+    border: solid 3px var(--yellow-high);
+    
+
+}
+
+#start_race:hover, 
+#stop_race:hover{
+
+    background-color: var(--yellow-high);
+  
+}
+
+
