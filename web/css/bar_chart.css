@@ -1,4 +1,15 @@
-/* Basic styling for the tooltip */
+:root {
+	/* Yellow */
+	--yellow-low: #fffff2;
+	--background-color: #fcfcd9;
+	--yellow-high: #beb761;
+  
+	/* Blue violet */
+	--blueViolet: #0f3678;
+  
+  }
+
+
 .tooltip {
     position: absolute;
     text-align: center;
@@ -14,18 +25,19 @@
 }
 
 
+/*
 * {
 margin: 0;
 padding: 0;
 font-family: sans-serif;
 }
+*/
+
 .chartMenu {
 width: 100vw;
 height: 40px;
 position: absolute;
 align-self: flex-end;
-background: rgba(54, 162, 235, 0);
-color: rgba(54, 162, 235, 1);
 display: flex;
 justify-content: center;
 align-items: flex-end;
@@ -34,9 +46,11 @@ align-items: flex-end;
 .chartCard {
 width: 100vw;
 height: calc(100vh - 40px);
-background: rgba(54, 162, 235, 0.2);
+background: var(--background-color);
 display: flex;
 align-items: center;
+position: relative;
+margin-top: 20vh;
 
 }
 
@@ -44,7 +58,7 @@ p.correlation {
 position: absolute;
 padding: 10px;
 font-size: 20px;
-color: black;
+color: var(--blueViolet);
 width: 50ch;
 
 }
@@ -53,7 +67,7 @@ width: 50ch;
 width: 700px;
 padding: 20px;
 border-radius: 20px;
-border: solid 3px rgba(54, 162, 235, 1);
+border: solid 3px var(--yellow-high);
 background: white;
 display: flex;
 align-items: center;
@@ -67,4 +81,16 @@ position: absolute;
 justify-self: flex-start;
 align-self: flex-start;
 
+}
+
+
+#countrySelect {
+    color: var(--blueViolet);
+    font-size: 20px;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    border: solid 3px var(--yellow-high);
+    margin-top: 5vh;
+    margin-left: 35vw;
 }

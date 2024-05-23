@@ -28,7 +28,7 @@
 	<script type="module" src="../js/race_chart.js"></script>
 	<script type="module" src="../js/slider.js"></script>
 
-	
+ 
 </head>
 <body>
 
@@ -70,9 +70,12 @@
 	
 </main>
 
+<!--
 <figure class="viz-row">
-	<embed class="width-limited" src="viz_plot.svg" />
+	<embed class="width-limited" src="../viz_plot.svg" />
 </figure>
+
+-->
 
 
     <div class="chartCard">
@@ -107,10 +110,14 @@
 	
 			<button id="start_race">Start</button>
 			<button id="stop_race">Stop</button>
+
+			<div class="container-display-year">
+			<div id="display_year"></div>
+			</div>
 	
 			<div class="selection-year-race-chart">
 				<select id="start_year"></select>
-				<div id="display_year"></div>
+				
 			</div>
 	
 		</div>
@@ -119,7 +126,7 @@
 
 
 
-	<div class="container">
+	<div class="container-slider">
 
 		<div class="slide">
 	

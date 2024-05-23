@@ -1,7 +1,7 @@
 :root {
  	--dark-font-color: rgb(0, 0, 0);
 }
-
+/*
 *{
     margin: 0;
     padding: 0;
@@ -13,7 +13,9 @@ body{
     overflow: hidden;
 }
 
-.container{
+*/
+
+.container-slider{
     position: relative;
     top: 50%;
     left: 50%;
@@ -25,7 +27,7 @@ body{
     margin-top: 75vh;
 }
 
-.container .slide .item{
+.container-slider .slide .item{
     width: 200px;
     height: 200px;
     position: absolute;
