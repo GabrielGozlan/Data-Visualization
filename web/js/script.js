@@ -167,7 +167,7 @@ function updateInfoPanel(country = 'N/A', gdp = 'N/A', info = 'N/A') {
     document.getElementById('country-name').innerHTML = `<strong>Country:</strong><br>${country}`;
     document.getElementById('gdp-info').innerHTML = `<strong>GDP Per Capita:</strong><br>$${gdp}`;
     
-    if (info !== 'N/A') {
+    if (info !== 'N/A' ) {
         const participants = info.split(';').map(participant => {
             const [name, points, rank, award] = participant.split(',').map(item => item === 'nan' ? 'N/A' : item);
             return `<li><strong>Name:</strong> ${name}, <strong>Total Points:</strong> ${points}, <strong>Rank:</strong> ${rank}, <strong>Award:</strong> ${award}</li>`;

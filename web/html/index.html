@@ -15,10 +15,7 @@
 	<link rel="stylesheet" href="../css/race_chart.css">
 	<link rel="stylesheet" href="../css/slider.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
-
-
-
+	
 	<script src="https://d3js.org/d3.v7.min.js"></script>
 	<script src="https://unpkg.com/topojson@3"></script>
 	<script src="https://unpkg.com/simple-statistics@7.8.3/dist/simple-statistics.min.js"></script>
@@ -27,9 +24,8 @@
 	<script type="module" src="../js/bar_chart.js"></script>
 	<script type="module" src="../js/race_chart.js"></script>
 	<script type="module" src="../js/slider.js"></script>
-
- 
 </head>
+
 <body>
 
 <nav>
@@ -48,7 +44,7 @@
 <main class="width-limited">
 	<h4>Introduction</h4>
 	<p>
-	This visualization show xxxx
+	This visualization shows xxxx
 	</p>
 	<p>
 	We investigate xxx
@@ -64,83 +60,50 @@
 		</p>
 	</div>
 
-	<div id="legend-container"></div>
-	<div id="map">
-	</div>
-	
-</main>
-
-<!--
-<figure class="viz-row">
-	<embed class="width-limited" src="../viz_plot.svg" />
-</figure>
-
--->
-
-
-    <div class="chartCard">
-
-        <select id="countrySelect">
-            <!-- Options seront ajoutées dynamiquement en JavaScript -->
-        </select>
-
-        <div class="chartBox">
-            <canvas id="myChart"></canvas>
+	<div id="content">
+        <div id="map"></div>
+        <div id="info-panel" class="info-panel">
+            <h4>Country Information</h4>
+            <p id="country-name"><strong>Country</strong>: <br>N/A</p>
+            <p id="gdp-info"><strong>GDP/Capita</strong>: <br>N/A</p>
+            <p id="rank-info"><strong>Contestants</strong>: <br>N/A</p>
         </div>
-
-        <div class="chartBox">
-            <canvas id="myChart2"></canvas>
-        </div>
-
-		<div class="chartMenu">
-		<p class="correlation"></p>
-	</div>
-		
-	
-
     </div>
 
-	
-	<div class="container-race-chart">
+	<div id="year-slider-container">
+        <input type="range" id="year-slider" min="1984" max="2017" step="1" value="1984">
+        <span id="year-display">1984</span>
+    </div>
+</main>
 
-		<div class="bg"></div>
-	
-	
-		<div class="race-chart-display">
-	
-			<button id="start_race">Start</button>
-			<button id="stop_race">Stop</button>
+<div class="chartCard">
+    <select id="countrySelect"></select>
+    <div class="chartBox"><canvas id="myChart"></canvas></div>
+    <div class="chartBox"><canvas id="myChart2"></canvas></div>
+	<div class="chartMenu"><p class="correlation"></p></div>
+</div>
 
-			<div class="container-display-year">
+<div class="container-race-chart">
+	<div class="bg"></div>
+	<div class="race-chart-display">
+		<button id="start_race">Start</button>
+		<button id="stop_race">Stop</button>
+		<div class="container-display-year">
 			<div id="display_year"></div>
-			</div>
-	
-			<div class="selection-year-race-chart">
-				<select id="start_year"></select>
-				
-			</div>
-	
+		</div>
+		<div class="selection-year-race-chart">
+			<select id="start_year"></select>
 		</div>
 	</div>
+</div>
 
-
-
-
-	<div class="container-slider">
-
-		<div class="slide">
-	
-	
-		</div>
-	
-		<div class="button">
-			<button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
-			<button class="next"><i class="fa-solid fa-arrow-right"></i></button>
-		</div>
-	
+<div class="container-slider">
+	<div class="slide"></div>
+	<div class="button">
+		<button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+		<button class="next"><i class="fa-solid fa-arrow-right"></i></button>
 	</div>
-
-
+</div>
 
 <div class="width-limited">
 	<h4>Credits</h4>
@@ -149,6 +112,19 @@
 
 <footer></footer>
 
+<style>
+    #content {
+        display: flex;
+    }
+
+    #info-panel {
+        flex: 1;
+        width: 600px; /* Adjust this value to make the panel wider */
+        padding: 100px;
+        background-color: #FFCC99;
+        border-left: 1px solid #ccc;
+    }
+</style>
+
 </body>
 </html>
-
