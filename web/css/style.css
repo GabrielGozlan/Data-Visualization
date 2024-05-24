@@ -93,12 +93,16 @@ The various units of measurement available in CSS:
 	fill: var(--blueViolet); /* Text color */
   }
 
+
+/*
 #map svg {
     border: 7px solid transparent;
-    border-image: radial-gradient(#f51e1e, #604d02) 1 stretch;
+    border-image: radial-gradient(#0d0c0c, #604d02) 1 stretch;
 	background-color: white;
 
 }
+*/
+
 
 /* Tooltip styling */
 .tooltip {

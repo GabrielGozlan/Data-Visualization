@@ -1,4 +1,4 @@
-const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+const margin = { top: 20, right: 20, bottom: 30, left: 60 };
 const width = 500 - margin.left - margin.right;
 const height = 500 - margin.top - margin.bottom;
 
@@ -11,14 +11,17 @@ const svg = d3.select(".bg").append("svg")
 
 const xScale = d3.scaleLinear()
 const yScale = d3.scaleBand()
-const xAxis = d3.axisBottom(xScale);
+const xAxis = d3.axisBottom(xScale)
 const yAxis = d3.axisLeft(yScale);
+
 
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
 let maxTotal = 0; 
 let color_of_countries = {};
 
+let startButton = document.getElementById("start_race");
+let stopButton = document.getElementById("stop_race");
 
 let isPaused = false; // Drapeau pour savoir si l'exécution est en pause ou non
 let currentYear = null; // Année courante où l'exécution est en pause
@@ -72,9 +75,7 @@ function loadCSVRaceChart() {
         transitions(data, currentYear);
     });
 
-    let startButton = document.getElementById("start_race");
-    let hitButton = 0
-    
+    let hitButton = 0;
 
     startButton.addEventListener("click", function(){
     hitButton += 1;
@@ -163,6 +164,7 @@ function updateRaceChart(data, transition_duration) {
    .attr("class", "x-axis")
    .call(xAxis);
 
+
   /*const yAxis = d3.axisLeft(yScale);*/
   svg.append("g")
    .attr("class", "y-axis")
@@ -180,7 +182,6 @@ function transitions(data, startYear) {
   const years = Object.keys(dataByYear);
 
   let delay = 0;
-  let stopButton = document.getElementById("stop_race");
   let displayYear = document.getElementById("display_year");
 
   const startYearIndex = years.indexOf(startYear);
@@ -221,4 +222,19 @@ function transitions(data, startYear) {
 
 
 
-window.addEventListener("load", loadCSVRaceChart);
+window.addEventListener("load", function() {
+  loadCSVRaceChart();
+  setTimeout(function() {
+    stopButton.click();
+  }, 3000);   
+
+  setTimeout(function() {
+    startButton.click();
+  }, 2000);   
+
+    
+  
+
+  
+});
+  

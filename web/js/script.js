@@ -65,9 +65,11 @@ function initializeMap() {
             }))
             .append("g");
         svgGlobal = svg;
-
+        
+        let translate_x = (width / 2 - 150);
+        let translate_y = (height / 2);
         const projection = d3.geoMercator()
-            .translate([width / 2, height / 2])
+            .translate([translate_x, translate_y])
             .scale(100);
 
         const path = d3.geoPath().projection(projection);
@@ -90,7 +92,8 @@ function initializeMap() {
             })
             .attr("stroke", "white")
             .attr("stroke-width", 0.5)
-            .on("mouseover", function(event, d) {
+            .on("click", function(event, d) {
+
                 const correctedName = countryNameMap[d.properties.name] || d.properties.name;
                 const gdp = gdpLookupGlobal.get(correctedName);
 
@@ -101,7 +104,7 @@ function initializeMap() {
                 const info = countryData ? countryData.info : 'N/A';
 
                 tooltip.transition()
-                    .duration(200)
+                    .duration(100)
                     .style("opacity", 0.9);
                 tooltip.html(d.properties.name + (gdp ? ": GDP/Capita $" + d3.format(".2s")(gdp) : ": No data") )
                     .style("left", (event.pageX) + "px")
@@ -113,6 +116,23 @@ function initializeMap() {
 
                 // Update info panel
                 updateInfoPanel(correctedName, gdp, info);
+
+                /*
+                let centroid = path.centroid(d),
+                x = (centroid[0]/2 + 150),
+                y = (centroid[1]/2 + 150),
+                k = 2; 
+
+                translate_x = width/2 -150 - x*k;
+                translate_y = height/2 - y*k;
+
+
+                svgGlobal
+                .transition()
+                .duration(750) 
+                .attr("transform", `translate(${translate_x}, ${translate_y}) scale(${k})`);
+                
+                */
             })
             .on("mouseout", function() {
                 tooltip.transition()
