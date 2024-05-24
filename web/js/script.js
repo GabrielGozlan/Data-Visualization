@@ -25,13 +25,14 @@ document.addEventListener("DOMContentLoaded", function() {
     slider.oninput = function() {
         yearDisplay.textContent = this.value;
         updateMapColors(this.value);
+        updateInfoPanel()
     };
 
     initializeMap();
 });
 
 function getGdpDataUrl(year) {
-    const url = `../../data/mapslider/world-data-${year}.csv`;
+    const url = `../../data/mapslider2/world-data-${year}.csv`;
     console.log(`Fetching data from: ${url}`);
     return url;
 }
@@ -39,22 +40,22 @@ function getGdpDataUrl(year) {
 let topoDataGlobal;
 let svgGlobal;
 let gdpLookupGlobal;
+let gdpDataGlobal;
 let colorScaleGlobal;
-let markerLineGlobal;
 
 function initializeMap() {
     Promise.all([
         d3.json(mapUrl),
-        d3.csv(getGdpDataUrl(1960))
+        d3.csv(getGdpDataUrl(1984))
     ]).then(function([topoData, gdpData]) {
         topoDataGlobal = topoData;
+        gdpDataGlobal = gdpData; // Store gdpData globally
         gdpLookupGlobal = prepareGdpData(gdpData);
         
         const colorDomain = d3.extent(Array.from(gdpLookupGlobal.values()));
         colorScaleGlobal = d3.scaleSequentialLog(d3.interpolateBlues)
             .domain(colorDomain)
             .clamp(true);
-
 
         const svg = d3.select("#map").append("svg")
             .attr("width", width)
@@ -77,12 +78,6 @@ function initializeMap() {
 
         const countries = topojson.feature(topoData, topoData.objects.countries).features;
 
-        const legendScale = d3.scaleLog()
-            .domain(colorDomain)
-            .range([legendXPosition, legendXPosition + legendWidth+100])
-            .clamp(true);
-
-
         svg.selectAll(".country")
             .data(countries)
             .enter().append("path")
@@ -99,17 +94,25 @@ function initializeMap() {
                 const correctedName = countryNameMap[d.properties.name] || d.properties.name;
                 const gdp = gdpLookupGlobal.get(correctedName);
 
+                const countryData = gdpDataGlobal.find(e => {
+                    return (countryNameMap[e.Country] || e.Country) === correctedName;
+                });
+
+                const info = countryData ? countryData.info : 'N/A';
+
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", 0.9);
-                tooltip.html(d.properties.name + (gdp ? ": GDP $" + d3.format(".2s")(gdp) : ": No data"))
+                tooltip.html(d.properties.name + (gdp ? ": GDP/Capita $" + d3.format(".2s")(gdp) : ": No data") )
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY - 28) + "px");
+
                 d3.select(this)
                     .style("stroke", "black")
                     .style("stroke-width", 1.5);
 
-               
+                // Update info panel
+                updateInfoPanel(correctedName, gdp, info);
             })
             .on("mouseout", function() {
                 tooltip.transition()
@@ -119,19 +122,18 @@ function initializeMap() {
                     .style("stroke", "white")
                     .style("stroke-width", 0.5);
 
+                // Reset info panel
+                updateInfoPanel(correctedName, gdp, info);
             });
 
         d3.select('#year-slider').on('input', function() {
             const year = +this.value;
             d3.csv(getGdpDataUrl(year)).then(newGdpData => {
-               
+                gdpDataGlobal = newGdpData; // Update global gdpData
                 gdpLookupGlobal = prepareGdpData(newGdpData);
                 updateMapColors(year);
-                
-                updateLegend(colorScaleGlobal, gdpLookupGlobal);
             }).catch(error => console.error("Error fetching GDP data:", error));
         });
-
     }).catch(error => console.error("Error initializing map:", error));
 }
 
@@ -161,4 +163,17 @@ function updateMapColors(year) {
         return gdp ? colorScaleGlobal(gdp) : '#ccc';
     });
 }
-
+function updateInfoPanel(country = 'N/A', gdp = 'N/A', info = 'N/A') {
+    document.getElementById('country-name').innerHTML = `<strong>Country:</strong><br>${country}`;
+    document.getElementById('gdp-info').innerHTML = `<strong>GDP Per Capita:</strong><br>$${gdp}`;
+    
+    if (info !== 'N/A') {
+        const participants = info.split(';').map(participant => {
+            const [name, points, rank, award] = participant.split(',').map(item => item === 'nan' ? 'N/A' : item);
+            return `<li><strong>Name:</strong> ${name}, <strong>Total Points:</strong> ${points}, <strong>Rank:</strong> ${rank}, <strong>Award:</strong> ${award}</li>`;
+        }).join('<hr>');
+        document.getElementById('rank-info').innerHTML = `<strong>Contestants:</strong><ul>${participants}</ul>`;
+    } else {
+        document.getElementById('rank-info').innerHTML = `<strong>Contestants:</strong><br>${info}`;
+    }
+}
