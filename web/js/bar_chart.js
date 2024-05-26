@@ -45,7 +45,7 @@ function updateChart(data) {
     let newData = {
         labels: filteredData.map(row => row[1]), 
         datasets: [{
-            label: 'Nombre de médailles',
+            label: 'Number of medals',
             data: filteredData.map(row => row[2]), 
             backgroundColor: 'rgba(253, 240, 9, 0.8)', 
             borderColor: 'rgba(253, 240, 9, 0.8)',
@@ -73,7 +73,7 @@ function updateChart(data) {
 
 	const correlation = ss.sampleCorrelation(newData.datasets[0].data.map(element => parseInt(element)), newData2.datasets[0].data.map(element => parseInt(element)));
 	const correlationParagraph = document.querySelector('.correlation');
-	correlationParagraph.textContent = 'Valeur de la correlation : ';
+	correlationParagraph.textContent = 'Correlation value : ';
 	correlationParagraph.textContent += correlation;
 	console.log(correlation);
 }

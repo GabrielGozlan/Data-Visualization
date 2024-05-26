@@ -11,6 +11,7 @@
 	<meta name="author" content="K Lis">
 
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/map.css">
 	<link rel="stylesheet" href="../css/bar_chart.css">
 	<link rel="stylesheet" href="../css/race_chart.css">
 	<link rel="stylesheet" href="../css/slider.css">
@@ -40,25 +41,26 @@
 </nav>
 
 <header class="title-row">
-	<h1> My Visualization Project </h1>
+	<h1> Our visualisation project: Maths-Olympiviz </h1>
 </header>
 
 <main class="width-limited">
 	<h4>Introduction</h4>
 	<p>
-	This visualization shows xxxx
+		Terence Tao, Grigori Perelman, these names may ring a bell. 
+		They are among the greatest mathematicians of our time, and they have one thing in common: when they were young they took part in the <a href="https://en.wikipedia.org/wiki/International_Mathematical_Olympiad" target="_blank">International Mathematical Olympiad</a>.
 	</p>
 	<p>
-	We investigate xxx
-	Read more <a href="description.html">about the problem</a> that we are trying to visualise
-	or the <a href="data.html">sources of our data</a>.
+	Find out more about the purpose of our site and our target audience <a href="description.html">here</a>, 
+	and about the source of our data <a href="data.html">here</a>.
+	
 	</p>
 
 	<div class="box">
 		<h4>How to use the map</h4>
 		<p>
-		This is a world map, and the colour scale shows the GDP of each country.
-		Hover over each country to show their corresponding GDP.
+		This is a world map, and the colour scale shows the GDP of each country.<br>
+		Click on a country to display information about its GDP and its results in the International Mathematical Olympiads.
 		</p>
 	</div>
 
@@ -79,23 +81,38 @@
 	</div>
 	
 </div>
+
+<div class="second-section-position">
+
 <div class="width-limited">
     <h4>In this section, we will analyse several metrics from the IMO dataset</h4>
     <p>The math olympiads consists of 6 problems (7 points each) individuals need to complete in a given time-frame. Countries have several participants representing the nation at the olympiads.</p>
-    <p>Our data consists of scores per participant and their country from the years 1984 to 2017. Contestants are awarded with a prize based on their performance. The prizes are Gold, Silver and Bronze medals, as well as Honourable Mentions. We also augment the data with the country's GDP per capita using another dataset, in order to visualize the how well the country's economy correlates with the performance of the participants.</p>
+    <p>Our data consists of scores per participant and their country from the years 1984 to 2017. 
+		Contestants are awarded with a prize based on their performance. The prizes are Gold, Silver and Bronze medals, as well as Honourable Mentions. We also augment the data with the country's GDP per capita using another dataset, in order to visualize the how well the country's economy correlates with the performance of the participants.</p>
     <div>
         <input type="text" id="country-input" placeholder="Enter country name">
     </div>
     <div id="plot"></div> <!-- This is where the plot will be added -->
-    <p>As we can see, the best performing countries are usually the same year over year, and Switzerland has very average performance. If you like, you can type in a country, and we will display their performances in total number of points over the years :).</p>
+    <p>As we can see, the best performing countries are usually the same year over year, and Switzerland has very average performance. <br>
+		If you like, you can type in a country, and we will display their performances in total number of points over the years :).</p>
 	<div>
         <input type="text" id="country-input2" placeholder="Enter country name">
     </div>
 	<div id="chart2"></div> <!-- This is where the plot will be added -->
-    <p>In this plot, we trace the ratio: total points/GDP per capita and plot the values for countries who had the highest ratio in 1985 (Morocco, China, Bulgaria) and the countries who had the highest ratio value in the last year recorded (Tajikistan, Syria and Bangladesh). In fact, countries with the most points and with lower GDP will have the highest ratio. Some of these are countries we would not expect to see in the top performers. Not surprisingly, China who had a very low GDP in the 80s had the highest ratio recorded at around 0.65!</p>
+    <p>In this plot, we trace the ratio: total points/GDP per capita and plot the values for countries who had the highest ratio in 1985 (Morocco, China, Bulgaria) and the countries who had the highest ratio value in the last year recorded (Tajikistan, Syria and Bangladesh). 
+		In fact, countries with the most points and with lower GDP will have the highest ratio. Some of these are countries we would not expect to see in the top performers. Not surprisingly, China who had a very low GDP in the 80s had the highest ratio recorded at around 0.65!</p>
     <p>This plot is interesting in that we observe "poorer" countries outperforming western countries, which goes to show, wealth does not have an impact on intellectual performances (at least for math).</p>
 </div>
+
+</div>
+
 </main>
+
+<section>
+
+	<p id="intro-bar-chart">
+		The bar chart below will allow you to target a specific country to see how GDP per capita is changing in relation to performance at the Olympics, and vice versa.
+	</p>
 
 <div class="chartCard">
     <select id="countrySelect"></select>
@@ -107,6 +124,17 @@
 
 	<div class="chartCorr"><p class="correlation"></p></div>
 </div>
+</section>
+
+<section>
+
+	<p id="intro-race-chart">
+
+		There does not appear to be a clear correlation between performance in the International Mathematical Olympiads and GDP per capita. 
+		But we can see that the countries with the highest correlation rate are often those that have seen their GDP per capita soar, such as Indonesia, Malaysia etc. <br>
+		
+		The race chart below shows the trend in the number of medals won at the Olympics for the 10 countries with the highest correlation coefficient.
+	</p>
 
 <div class="container-race-chart">
 	<div class="bg"></div>
@@ -123,6 +151,17 @@
 </div>
 <span id="x-axis-label"> Number of Medals </span>
 
+</section>
+
+<section>
+
+	<p id="intro-slider">
+
+		Results in the Maths Olympiads do not necessarily predict future success in the mathematical careers of the participants, 
+		bearing in mind that not everyone wants to become a mathematician. <br>
+		However, several pillars of modern mathematics have taken part in the Olympiads, and we'll show you some of them below.
+	</p>
+
 <div class="container-slider">
 	<div class="slide"></div>
 	<div class="button">
@@ -131,83 +170,17 @@
 	</div>
 </div>
 
+</section>
+
+
+<footer>
+
 <div class="width-limited">
 	<h4>Credits</h4>
 	<p>Meet <a href="./team.html">the authors here</a>. The project was created for the <a href="http://edu.epfl.ch/coursebook/en/data-visualization-COM-480">Data Visualization</a> course at EPFL.
 </div>
 
-<footer></footer>
-
-<style>
-
-    #content {
-        display: flex;
-		justify-content: flex-end;
-		width: 100%;
-		height: 100vh;
-    }
-
-	#map {
-		margin-top: 10vh;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: row;
-
-	}
-
-
-	#map svg {
-    border: 7px solid transparent;
-    border-color:  #f1f1f1;
-	background-color: white;
-	width: 70vw;
-	height: auto;
-	}
-
-	#info-panel {
-        display: flex;
-		justify-content: flex-start;
-		align-items: flex-start;
-		flex-direction: column;
-        background-color: #f1f1f1;
-        padding-left: 20px;
-		padding-right: 50px;
-		overflow-y: auto;
-		overflow-x: hidden;
-		scrollbar-width: none;
-		width: auto;
-		border-radius: 5px;
-		
-    }
-
-	
-	#year-slider-container {
-		position: absolute;
-		width: 100%;
-		height: auto;
-		display: flex;
-		justify-content: center;
-		align-items: flex-start;
-		margin-top: 20px;
-		
-	}
-
-	#year-slider{
-
-		width: 20vw;
-
-	}
-
-	#year-display {
-		margin-left: 5vw;
-		font-size: x-large;
-
-	}
-
-
-
-</style>
+</footer>
 
 </body>
 </html>

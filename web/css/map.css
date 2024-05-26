@@ -1,0 +1,66 @@
+#content {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100vh;
+    margin-bottom: 20vh;
+}
+
+#map {
+    margin-top: 10vh;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+#map svg {
+border: 7px solid transparent;
+border-color:  #f1f1f1;
+background-color: white;
+width: 70vw;
+height: auto;
+}
+
+#info-panel {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    padding-left: 20px;
+    padding-right: 50px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    width: auto;
+    border-radius: 5px;
+    
+}
+
+
+#year-slider-container {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: 20px;
+    
+}
+
+#year-slider{
+
+    width: 20vw;
+
+}
+
+#year-display {
+    margin-left: 5vw;
+    font-size: x-large;
+
+}

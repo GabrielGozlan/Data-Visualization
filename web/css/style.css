@@ -45,7 +45,7 @@ to
 /*
 Make the document fill the whole viewport, this overrides any weird defaults that browsers might have.
 */
-html, body, figure {
+html, body, figure{
 	width: 100%;
 	padding: 0;
 	margin: 0;
@@ -69,6 +69,14 @@ The various units of measurement available in CSS:
 	https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units
 */
 .width-limited {
+	max-width: 60rem;
+
+	/* Center horizontally: */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+section>p {
 	max-width: 60rem;
 
 	/* Center horizontally: */
