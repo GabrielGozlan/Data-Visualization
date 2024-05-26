@@ -23,6 +23,8 @@
 	<script type ="module" src="../js/script.js"></script>
 	<script type="module" src="../js/bar_chart.js"></script>
 	<script type="module" src="../js/race_chart.js"></script>
+	<script type="module" src="../js/plot1.js"></script>
+	<script type="module" src="../js/plot2.js"></script>	
 	<script type="module" src="../js/slider.js"></script>
 </head>
 
@@ -77,7 +79,22 @@
 	</div>
 	
 </div>
-
+<div class="width-limited">
+    <h4>In this section, we will analyse several metrics from the IMO dataset</h4>
+    <p>The math olympiads consists of 6 problems (7 points each) individuals need to complete in a given time-frame. Countries have several participants representing the nation at the olympiads.</p>
+    <p>Our data consists of scores per participant and their country from the years 1984 to 2017. Contestants are awarded with a prize based on their performance. The prizes are Gold, Silver and Bronze medals, as well as Honourable Mentions. We also augment the data with the country's GDP per capita using another dataset, in order to visualize the how well the country's economy correlates with the performance of the participants.</p>
+    <div>
+        <input type="text" id="country-input" placeholder="Enter country name">
+    </div>
+    <div id="plot"></div> <!-- This is where the plot will be added -->
+    <p>As we can see, the best performing countries are usually the same year over year, and Switzerland has very average performance. If you like, you can type in a country, and we will display their performances in total number of points over the years :).</p>
+	<div>
+        <input type="text" id="country-input2" placeholder="Enter country name">
+    </div>
+	<div id="chart2"></div> <!-- This is where the plot will be added -->
+    <p>In this plot, we trace the ratio: total points/GDP per capita and plot the values for countries who had the highest ratio in 1985 (Morocco, China, Bulgaria) and the countries who had the highest ratio value in the last year recorded (Tajikistan, Syria and Bangladesh). In fact, countries with the most points and with lower GDP will have the highest ratio. Some of these are countries we would not expect to see in the top performers. Not surprisingly, China who had a very low GDP in the 80s had the highest ratio recorded at around 0.65!</p>
+    <p>This plot is interesting in that we observe "poorer" countries outperforming western countries, which goes to show, wealth does not have an impact on intellectual performances (at least for math).</p>
+</div>
 </main>
 
 <div class="chartCard">
