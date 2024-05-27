@@ -133,19 +133,8 @@ function initializeMap() {
                 .attr("transform", `translate(${translate_x}, ${translate_y}) scale(${k})`);
                 
                 */
-            })
-            .on("mouseout", function() {
-                tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-                d3.select(this)
-                    .style("stroke", "white")
-                    .style("stroke-width", 0.5);
-
-                // Reset info panel
-                updateInfoPanel(correctedName, gdp, info);
             });
-
+            
         d3.select('#year-slider').on('input', function() {
             const year = +this.value;
             d3.csv(getGdpDataUrl(year)).then(newGdpData => {

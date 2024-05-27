@@ -4,6 +4,11 @@ let csvUrl = "../../data/notables_with_urls.csv"
 let defaultImgUrl = "../../images/default_image.jpg"
 
 function transformMedals(medalsString) {
+
+    if (typeof medalsString !== 'string') {
+      return "IMO Results: <br>No data available";
+    }
+
     // Mapping des abréviations vers les descriptions complètes
     const medalDescriptions = {
         'G': 'Gold medal',
