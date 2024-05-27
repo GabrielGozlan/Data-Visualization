@@ -1,4 +1,3 @@
-
 /*
 This CSS governs the appearance of our site.
 You can find the basic concepts of CSS here: https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/How_CSS_works
@@ -9,108 +8,85 @@ We use CSS variables to avoid repetition
 https://developer.mozilla.org/en-US/docs/Web/CSS/--*
 */
 
-/*
 :root {
-	--theme-color-light: rgb(0, 200, 80);
-	--theme-color-dark: rgb(0, 122, 50);
- 	--dark-background-color: rgb(50, 50, 50);
+    --primary-blue: #003cbf; /* Dark Blue */
+    --secondary-blue: #5f8caa; /* Light Blue */
+    --complementary-green: #2e8b57; /* Sea Green */
+    --background-color: #f4f8fb; /* Very Light Blue/Gray for background */
+    --nav-background-color: #032f8d; /* Dark Blue for Navigation */
+    --title-background-color: #041079; /* Dark Blue for Title Row */
+    --content-background-color: #ffffff; /* White for content background */
+    --text-color: #333333; /* Dark Gray for readability */
+    --heading-color: #003cbf; /* Dark Blue for headings */
+    --button-link-color: #ffcc00; /* Yellow for buttons and links */
+    --border-color: #d8e1e8; /* Light Gray for borders */
+    --tooltip-background: #f8f9fa; /* Light Gray for tooltips */
 }
 
-*/
-
-:root {
-	/* Yellow */
-	--yellow-low: #fffff2;
-	--background-color: #fcfcd9;
-	--yellow-high: #beb761;
-  
-	/* Blue violet */
-	--blueViolet: #0f3678;
-  
-  }
-
-  
 /*
 This makes the border and padding be counted as part of the element's size.
 https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Box_model
-It switches from
-	https://mdn.mozillademos.org/files/13647/box-model-standard-small.png
-to
-	https://mdn.mozillademos.org/files/13649/box-model-alt-small.png
 */
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /*
 Make the document fill the whole viewport, this overrides any weird defaults that browsers might have.
 */
-html, body, figure{
-	width: 100%;
-	padding: 0;
-	margin: 0;
-	border: 0;
-	max-width: 100%; 
-    overflow-x: hidden; 
+html, body, figure {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* Default font and size */
 body {
-	font-family: sans-serif;
-	font-size: 1.1rem;
-	background-color: var(--background-color);
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 /*
 It is easier to read if the text is not too wide, so we limit the width.
 We use the class selector ".", so this style will be applied to elements with class="width-limited"
-
-The various units of measurement available in CSS:
-	https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units
 */
 .width-limited {
-	max-width: 60rem;
+    max-width: 60rem;
 
-	/* Center horizontally: */
-	margin-left: auto;
-	margin-right: auto;
+    /* Center horizontally: */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section>p {
-	max-width: 60rem;
+    max-width: 60rem;
 
-	/* Center horizontally: */
-	margin-left: auto;
-	margin-right: auto;
+    /* Center horizontally: */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .svg-container {
-    width: 100%;  /* Makes sure the SVG container fills the div */
-    height: auto;  /* Keeps the aspect ratio intact */
+    width: 100%; /* Makes sure the SVG container fills the div */
+    height: auto; /* Keeps the aspect ratio intact */
 }
 
 #legend-container {
-    background-color: var(--yellow-high); /* Temporary background color for testing */
+    background-color: var(--nav-background-color); /* Background color for legend */
     width: 400px; /* Set a specific width */
     height: 60px; /* Set a specific height */
-	display: block;
+    display: block;
 }
 
 .legend-text {
-	font-size: 0.75em; /* Adjust size as needed */
-	fill: var(--blueViolet); /* Text color */
-  }
-
-
-/*
-#map svg {
-    border: 7px solid transparent;
-    border-image: radial-gradient(#0d0c0c, #604d02) 1 stretch;
-	background-color: white;
-
+    font-size: 0.75em; /* Adjust size as needed */
+    fill: var(--primary-blue); /* Text color */
 }
-*/
-
 
 /* Tooltip styling */
 .tooltip {
@@ -120,8 +96,8 @@ section>p {
     height: auto;
     padding: 10px;
     font: 14px 'Arial', sans-serif;
-    background: var(--background-color);
-    border: solid 1px #ccc;
+    background: var(--tooltip-background);
+    border: solid 1px var(--border-color);
     border-radius: 5px;
     pointer-events: none;
     opacity: 0;
@@ -137,20 +113,19 @@ section>p {
 
 /* Links: apply our theme color and remove underline */
 a {
-	color: var(--yellow-high);
-	text-decoration: none;
+    color: var(--button-link-color);
+    text-decoration: none;
 }
 
 /* Justify paragraphs */
 p {
-	text-align: justify;
-	color: var(--blueViolet)
+    text-align: justify;
+    color: var(--text-color);
 }
 
 /* Titles: set color and sizes */
-h1, h2, h3, h4, h5, h6
-{
-	color: var(--yellow-high);
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
 }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.75rem; }
@@ -159,98 +134,86 @@ h4 { font-size: 1.25rem; }
 
 /* Top navigation bar */
 nav {
-	width: 100%;
-
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-
-	background-color: var(--yellow-high);
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: var(--nav-background-color);
 }
 
 /* Make the links in the navbar bold */
 nav a {
-	font-weight: bold;
-	color: var(--blueViolet);
+    font-weight: bold;
+    color: var(--button-link-color);
 }
 
 /* Style of the list of links in the navbar */
 nav ul {
-	/* Clear defaults */
-	margin: 0;
-	padding: 0;
+    /* Clear defaults */
+    margin: 0;
+    padding: 0;
 
-	/* Remove list bullet points */
-	list-style-type: none;
+    /* Remove list bullet points */
+    list-style-type: none;
 
-	/*
-	Flexbox is a modern mechanism for arranging elements
-		https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-	This will arrange the elements in a row
-	*/
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: flex-start;
+    /* Flexbox for arranging elements in a row */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
 }
 
 /* Space between links */
 nav li {
-	margin-right: 3rem;
+    margin-right: 3rem;
 }
-
 
 /* The box with a dark background and our site's title */
 .title-row {
-	width: 100%;
+    width: 100%;
 
-	/* Space above and below the title */
-	padding-top: 3rem;
-	padding-bottom: 3rem;
+    /* Space above and below the title */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
-	background-color: var(--background-color);
-	background: linear-gradient(45deg, rgb(250, 210, 0), var(--yellow-low));
-	/* Center the title using flexbox */
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    background-color: var(--title-background-color);
+    /* Center the title using flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Style of the title inside the box */
 .title-row h1 {
-	font-size: 2.1rem;
-	color: white;
-	font-variant: small-caps;
-
-	text-shadow:  0 0 0.6rem;
+    font-size: 2.1rem;
+    color: white;
+    font-variant: small-caps;
+    text-shadow: 0 0 0.6rem;
 }
 
 .box {
-	padding-left: 2rem;
-	padding-right: 2rem;
-	margin-bottom: 1rem;
-
-	background-color: var(--background-color);
-
-	border: 2px solid var(--yellow-high);
-	border-radius: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-bottom: 1rem;
+    background-color: var(--content-background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 2rem;
 }
 
 .viz-row {
-	width: 100%;
-	/* Center the title using flexbox */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	padding-top: 2rem;
-	padding-bottom: 2rem;
-
-	background-color: var(--background-color)
+    width: 100%;
+    /* Center the title using flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: var(--content-background-color);
 }
 
 figure embed {
-	width: 100%;
+    width: 100%;
 }
 
 footer {
-	padding-bottom: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--background-color);
 }
