@@ -12,10 +12,10 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/--*
     --primary-blue: #003cbf; /* Dark Blue */
     --secondary-blue: #5f8caa; /* Light Blue */
     --complementary-green: #2e8b57; /* Sea Green */
-    --background-color: #f4f8fb; /* Very Light Blue/Gray for background */
+    --background-color: #cbe1f1; /* Very Light Blue/Gray for background */
     --nav-background-color: #032f8d; /* Dark Blue for Navigation */
     --title-background-color: #041079; /* Dark Blue for Title Row */
-    --content-background-color: #ffffff; /* White for content background */
+    --content-background-color: #a7c7df; /* White for content background */
     --text-color: #333333; /* Dark Gray for readability */
     --heading-color: #003cbf; /* Dark Blue for headings */
     --button-link-color: #ffcc00; /* Yellow for buttons and links */
@@ -215,4 +215,94 @@ figure embed {
 footer {
     padding-bottom: 5rem;
     background-color: var(--background-color);
+}
+
+/* for description.html */
+
+.hero {
+    background: linear-gradient(to bottom, var(--primary-blue), var(--secondary-blue));
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.5rem;
+}
+
+.content-card {
+    background-color: var(--content-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.content-card:hover {
+    transform: translateY(-10px);
+    transform: scale(1.1);
+}
+
+
+/* description.html */
+.intro-section, .dataset-section, .process-section {
+    background-color: var(--content-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.intro-section:hover, .dataset-section:hover, .process-section:hover {
+    transform: translateY(-10px);
+    transform: scale(1.1);
+}
+
+.dataset-section .card {
+    background-color: var(--content-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.dataset-section .card:hover {
+    transform: translateY(-10px);
+}
+
+/* team.html */
+.team-member {
+    display: flex;
+    align-items: center;
+    background-color: var(--content-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+.member-info h4 {
+    font-size: 1.5rem;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
 }

@@ -2,47 +2,81 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<title>Welcome to Math Olympiviz</title>
-	<meta name="description" content="Welcome to Data Visualization">
-	<meta name="author" content="K Lis">
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="../css/style.css">
+    <title>Welcome to Math Olympiviz</title>
+    <meta name="description" content="Welcome to Data Visualization">
+    <meta name="author" content="K Lis">
+
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
 <nav>
-	<ul class="width-limited">
-		<li><a href="index.html">Home</a></li>
-		<li><a href="description.html">Description</a></li>
-		<li><a href="data.html">Data</a></li>
-		<li><a href="team.html">Team</a></li>
-	</ul>
+    <ul class="width-limited">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="description.html">Description</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="team.html">Team</a></li>
+    </ul>
 </nav>
 
 <header class="title-row">
-	<h1> International Math Olympiad Rank (1993-2023) </h1>
+    <h1>International Math Olympiad Rank (1993-2023)</h1>
 </header>
 
 <main class="width-limited">
-	<h4>Introduction</h4>
-	<p>
-		The dataset that we have chosen is the International Mathematics Olympiad (IMO) scores from <a href="https://www.kaggle.com/datasets/asimyousuf/international-math-olympiad-rank-1993-2023">Kaggle</a>. The dataset contains scores of the IMO participants from 1984 to 2017, with breakdown of the individual scores for each problem. The dataset has been cleaned, as the records for the years where the scores for the individual problems are not recorded are omitted. This ensures completeness of the dataset and hence, no data-cleaning needs to be done. 
-	</p>
-	<p>
-		However, the amount of information that we can gather from this one particular dataset is rather limited, as it only focuses on the participants and their scores. We have decided to take another similar dataset, which is on the ranking of each country every year. This way, we are able to relate both datasets, to analyse the performance of the participants, and their relationship with their respective countries’ overall standing for the year.
-	</p>
-	<p>
-		The dataset represents the countries in country code (e.g. FRA for France), and we have found a Github repository that provides the mapping of the country code to its name: https://github.com/arthurberg/IMO.
-	</p>
-	<p>We collected data over several sources. For the GDP, we used data from the WorldBank, which traces the GDP/capita from 1960 to 2022. The IMO data was collected on kaggle and records every result from 1984 to 2017.
-		We used python to do some data manipulation to create csv files to merge data together, in order to display data on the map. </p>
-</div>
+    <section class="intro-section">
+        <h2>Introduction</h2>
+        <p>
+            The dataset that we have chosen is the International Mathematics Olympiad (IMO) scores from <a href="https://www.kaggle.com/datasets/asimyousuf/international-math-olympiad-rank-1993-2023">Kaggle</a>. The dataset contains scores of the IMO participants from 1984 to 2017, with breakdown of the individual scores for each problem. The dataset has been cleaned, as the records for the years where the scores for the individual problems are not recorded are omitted. This ensures completeness of the dataset and hence, no data-cleaning needs to be done.
+        </p>
+        <p>
+            However, the amount of information that we can gather from this one particular dataset is rather limited, as it only focuses on the participants and their scores. We have decided to take another similar dataset, which is on the ranking of each country every year. This way, we are able to relate both datasets, to analyse the performance of the participants, and their relationship with their respective countries’ overall standing for the year.
+        </p>
+        <p>
+            The dataset represents the countries in country code (e.g., FRA for France), and we have found a Github repository that provides the mapping of the country code to its name: <a href="https://github.com/arthurberg/IMO">https://github.com/arthurberg/IMO</a>.
+        </p>
+        <p>
+            We collected data from several sources. For the GDP, we used data from the WorldBank, which traces the GDP/capita from 1960 to 2022. The IMO data was collected on Kaggle and records every result from 1984 to 2017. We used Python to do some data manipulation to create CSV files to merge data together, in order to display data on the map.
+        </p>
+    </section>
 
-<footer></footer>
+    <section class="dataset-section">
+        <h2>Datasets</h2>
+        <div class="card">
+            <h3>IMO Scores Dataset</h3>
+            <p>Source: <a href="https://www.kaggle.com/datasets/asimyousuf/international-math-olympiad-rank-1993-2023">Kaggle</a></p>
+            <p>Description: Contains scores of IMO participants from 1984 to 2017, including individual scores for each problem.</p>
+        </div>
+        <div class="card">
+            <h3>Country Code Mapping</h3>
+            <p>Source: <a href="https://github.com/arthurberg/IMO">GitHub</a></p>
+            <p>Description: Provides the mapping of country codes to country names, facilitating the understanding of the IMO scores dataset.</p>
+        </div>
+        <div class="card">
+            <h3>GDP Data</h3>
+            <p>Source: <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD">World Bank</a></p>
+            <p>Description: Traces the GDP per capita from 1960 to 2022, used to correlate economic status with IMO performance.</p>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <h2>Data Processing</h2>
+        <p>
+            The data from these sources were merged and processed using Python. Data manipulation techniques were applied to ensure the datasets were compatible and ready for visualization. This involved cleaning the data, handling missing values, and ensuring consistency across different datasets.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <div class="width-limited">
+        <p>&copy; 2023 Math Olympiviz. All rights reserved.</p>
+    </div>
+</footer>
 
 </body>
 </html>
