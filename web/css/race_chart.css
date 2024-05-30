@@ -13,12 +13,12 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     position: relative;
-    margin-top: 20vh;
-    
+    margin-top: 10vh;
 }
 
 .bg{
     grid-column: 2/8;
+
 }
 
 
@@ -26,12 +26,13 @@
     display: grid;
     grid-template-rows: repeat(8, 1fr);
     grid-column: 9/10;
+    height: 50vh;
 }
 
 .selection-year-race-chart{
     display: flex;
     flex-direction: column;
-    grid-row: 7/-1;
+    grid-row: 7/-2;
     justify-content: space-between;
 }
 
@@ -88,11 +89,10 @@
 #x-axis-label{
     font-size:medium;
     color: var(--blueViolet);
-    position: relative;
+    position: absolute;
     width: 100%;
     margin-left: 25vw;
-    margin-bottom: 100px;
-    
+    height: auto;
 }
 
 #intro-race-chart{

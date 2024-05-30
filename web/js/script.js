@@ -57,20 +57,22 @@ function initializeMap() {
             .domain(colorDomain)
             .clamp(true);
 
-        const svg = d3.select("#map").append("svg")
+            const svg = d3.select("#map")
+            .append("svg")
             .attr("width", width)
             .attr("height", height)
+            .attr('class', 'content-map')
             .call(d3.zoom().scaleExtent([1, 8]).on("zoom", function (event) {
                 svg.attr("transform", event.transform);
             }))
             .append("g");
         svgGlobal = svg;
         
-        let translate_x = (width / 2 - 150);
-        let translate_y = (height / 2);
+        let translate_x = (width /2 + 40 );
+        let translate_y = (height / 2 +60);
         const projection = d3.geoMercator()
             .translate([translate_x, translate_y])
-            .scale(100);
+            .scale(130);
 
         const path = d3.geoPath().projection(projection);
 

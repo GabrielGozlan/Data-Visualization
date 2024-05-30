@@ -24,7 +24,7 @@ body{
     height: 600px;
     background: #f5f5f5;
     box-shadow: 0 30px 50px #dbdbdb;
-    margin-top: 75vh;
+    margin-top: 40vh;
 }
 
 .container-slider .slide .item{
@@ -210,11 +210,11 @@ body{
 
 
 #intro-slider{
-
     margin-top: 100px;
     background-color: var(--content-background-color);
     border: 2px solid var(--border-color);
 	border-radius: 2rem;
     padding: 20px;
+    position: relative;
 
 }

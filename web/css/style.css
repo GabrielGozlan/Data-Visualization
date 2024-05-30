@@ -56,8 +56,7 @@ It is easier to read if the text is not too wide, so we limit the width.
 We use the class selector ".", so this style will be applied to elements with class="width-limited"
 */
 .width-limited {
-    max-width: 60rem;
-
+    max-width: 90rem;
     /* Center horizontally: */
     margin-left: auto;
     margin-right: auto;
