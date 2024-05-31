@@ -19,9 +19,9 @@ function processData(csvData) {
         const row = dataRows[i];
         countries.push(row[6]); 
     }
-    // Supprimer les doublons de la liste des pays
+    // Remove duplicates from the country list
     const uniqueCountries = [...new Set(countries)];
-    // Mettre à jour le sélecteur de pays avec les options
+    // Update country selector with the options
     const countrySelect = document.getElementById('countrySelect');
 	uniqueCountries.forEach(country => {
         if (!countrySelect.querySelector(`option[value="${CSS.escape(country)}"]`)) {
@@ -32,13 +32,13 @@ function processData(csvData) {
     }
     });
     
-    // Mettre à jour le graphique une fois les données traitées
+    // Update graph once data has been processed
     updateChart(dataRows);
 	
 }
 
 
-// Fonction pour mettre à jour le graphique en fonction du pays sélectionné
+/// Function to update the chart according to the selected country
 function updateChart(data) {
     const selectedCountry = document.getElementById('countrySelect').value;
     const filteredData = data.filter(row => row[6] === selectedCountry); 
@@ -65,7 +65,7 @@ function updateChart(data) {
 			}]
 		};
 
-    // Mettre à jour les données du graphique
+    // Update chart data
     myChart.data = newData;
     myChart.update();
 
@@ -83,7 +83,7 @@ function updateChart(data) {
 
 	
 
-// Appeler la fonction pour charger les données CSV lorsque la page est chargée
+// Call the function to load CSV data when the page is loaded
 window.addEventListener('load', () => {
     loadCSV();
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -116,6 +116,6 @@ window.addEventListener('load', () => {
 
 
 document.getElementById('countrySelect').addEventListener('change', function() {
-    // Appelez la fonction pour mettre à jour le graphique lorsque le pays est sélectionné
+    // Call the function to update the graph when the country is selected
     loadCSV();
 });	

@@ -3,13 +3,16 @@ let header = ["Index","Name","Team","IMO","Fields_Medal","Wolf_Prize","AMS_Prize
 let csvUrl = "../../data/notables_with_urls.csv"
 let defaultImgUrl = "../../images/default_image.jpg"
 
+
+
+// This function displays the IMO results of major mathematicians in the visualization.
 function transformMedals(medalsString) {
 
     if (typeof medalsString !== 'string') {
       return "IMO Results: <br>No data available";
     }
 
-    // Mapping des abréviations vers les descriptions complètes
+    // Mapping abbreviations to full descriptions
     const medalDescriptions = {
         'G': 'Gold medal',
         'S': 'Silver medal',
@@ -62,6 +65,7 @@ function formatPrizes(rowList) {
 */
 
 
+// Loads data from the CSV file and dynamically creates HTML elements to display the data.
 function loadDataFromCSV() {
     fetch(csvUrl) 
       .then(response => response.text())
@@ -117,13 +121,13 @@ function loadDataFromCSV() {
       })
   }
 
-  // Appel de la fonction pour charger et afficher les données
+  // Call function to load and display data
   loadDataFromCSV();
 
 
 
 
-
+// This part enables dynamic display in the slider, to move from one slide to the next or previous one.
 
 let next = document.querySelector('.next')
 let prev = document.querySelector('.prev')
@@ -135,7 +139,7 @@ next.addEventListener('click', function(){
 
 prev.addEventListener('click', function(){
     let items = document.querySelectorAll('.item')
-    document.querySelector('.slide').prepend(items[items.length - 1]) // here the length of items = 6
+    document.querySelector('.slide').prepend(items[items.length - 1]) // The length of items = number of mathematicians in visualization
 })
 
 

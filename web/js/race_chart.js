@@ -23,9 +23,9 @@ let color_of_countries = {};
 let startButton = document.getElementById("start_race");
 let stopButton = document.getElementById("stop_race");
 
-let isPaused = false; // Drapeau pour savoir si l'exécution est en pause ou non
-let currentYear = null; // Année courante où l'exécution est en pause
-let startYear = null; // Année de départ de l'exécution
+let isPaused = false; // Flag to indicate whether execution is paused or not
+let currentYear = null; // Current year when race chart execution is paused
+let startYear = null; // Starting year of execution
 
 
 function loadCSVRaceChart() {
@@ -47,12 +47,14 @@ function loadCSVRaceChart() {
       }
    }
 
-    // Supprimer les doublons de la liste des pays
+   // Delete duplicates from country list
     const uniqueCountries = [...new Set(countries)];
     uniqueCountries.forEach((country, i) => {
       color_of_countries[country] = color(i);
     });
 
+
+    // maxTotal was created to have a fixed x-axis, which stops at the maximum number of points possible in the data.
     for (let year in dataByYear) {
       for (let i = 0; i < dataByYear[year].length; i++) {
          (dataByYear[year][i].total > maxTotal) 
@@ -60,7 +62,7 @@ function loadCSVRaceChart() {
       }
     }
 
-
+    // When data is initialized, the year selector is also initialized.
     const selectionYear = document.getElementById('start_year');
     years.forEach(year => {
     const option = document.createElement('option');
@@ -69,20 +71,23 @@ function loadCSVRaceChart() {
     selectionYear.appendChild(option);
     });
 
+    //When a new year is selected, the race chart starts the animation from that year. 
     selectionYear.addEventListener("change", () => {
         currentYear = selectionYear.value;
         isPaused = false;
         transitions(data, currentYear);
     });
 
-    let hitButton = 0;
 
+    let hitButton = 0;
+    // HitButton is necessary to prevent the race chart animation from running several times and creating something totally incoherent.
     startButton.addEventListener("click", function(){
     hitButton += 1;
     if (isPaused === false && hitButton === 1) {
       transitions(data, startYear);
     }
 
+    // The transitions function is modified to display only the last year in which the animation was not paused when the pause button is clicked.
     else if (isPaused === true) {
       if (currentYear !== null) {
         isPaused = false;
@@ -96,7 +101,9 @@ function loadCSVRaceChart() {
    
 };
 
- 
+
+
+ // Processes the given CSV data to group it by year and extract relevant information
 function processDataRaceChart(csvData) {
   const dataRows = csvData.split('\n').map(row => row.split(','));
   const years = dataRows.map(row => parseInt(row[1])); 
@@ -126,6 +133,8 @@ function processDataRaceChart(csvData) {
   return dataByYear; 
 }
 
+
+// This function updates the race chart display according to the year.
 function updateRaceChart(data, transition_duration) {
 
   /*data = data.sort(function(a, b){return a.total-b.total}); */
@@ -151,21 +160,18 @@ function updateRaceChart(data, transition_duration) {
     .attr("x", 0);
     
     
-    
 
-    // Supprimer les anciens axes avant l'update
+  // Delete old axes before updating
   svg.selectAll(".x-axis").remove();
   svg.selectAll(".y-axis").remove();
 
   
-  /*const xAxis = d3.axisBottom(xScale);*/
   svg.append("g")
    .attr("transform", "translate(0," + height + ")")
    .attr("class", "x-axis")
    .call(xAxis);
 
 
-  /*const yAxis = d3.axisLeft(yScale);*/
   svg.append("g")
    .attr("class", "y-axis")
    .call(yAxis);
@@ -175,7 +181,7 @@ function updateRaceChart(data, transition_duration) {
 }
 
 
-let timeouts = []; // Tableau pour stocker les timeouts en cours
+let timeouts = []; // Table to store current timeouts
 
 function transitions(data, startYear) {
   const dataByYear = processDataRaceChart(data);
@@ -193,14 +199,14 @@ function transitions(data, startYear) {
 
   for (const year of remainingYears) {
     const timeoutId = setTimeout(() => {
-      if (!isPaused) { // Vérifier si l'exécution est en pause avant d'exécuter updateRaceChart
+      if (!isPaused) { // // Check that execution is not paused before running updateRaceChart
         updateRaceChart(dataByYear[year], 2000);
         currentYear = year;
         displayYear.textContent = currentYear;
       }
     }, delay);
     delay += 2000;
-    timeouts.push(timeoutId); // Stocker le timeout en cours dans le tableau timeouts
+    timeouts.push(timeoutId); // Store the current timeout in the timeouts table
   }
 
   stopButton.addEventListener("click", function() {
@@ -221,6 +227,15 @@ function transitions(data, startYear) {
 */
 
 
+
+
+/*
+
+This function is used to simulate a click on the start button when the page is displayed, 
+followed by a click on the pause button, so that the chart is already displayed by default on the first year of vosualization, 
+rather than nothing being displayed at the race chart location. 
+
+*/
 
 window.addEventListener("load", function() {
   loadCSVRaceChart();
