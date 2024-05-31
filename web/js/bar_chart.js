@@ -24,7 +24,7 @@ function processData(csvData) {
     // Mettre à jour le sélecteur de pays avec les options
     const countrySelect = document.getElementById('countrySelect');
 	uniqueCountries.forEach(country => {
-        if (!countrySelect.querySelector(`option[value="${country}"]`)) {
+        if (!countrySelect.querySelector(`option[value="${CSS.escape(country)}"]`)) {
         const option = document.createElement('option');
         option.value = country;
         option.textContent = country;
@@ -36,6 +36,7 @@ function processData(csvData) {
     updateChart(dataRows);
 	
 }
+
 
 // Fonction pour mettre à jour le graphique en fonction du pays sélectionné
 function updateChart(data) {
