@@ -45,7 +45,7 @@ function updateChart(data) {
     let newData = {
         labels: filteredData.map(row => row[1]), 
         datasets: [{
-            label: 'Number of medals',
+            label: 'Number of points',
             data: filteredData.map(row => row[2]), 
             backgroundColor: 'rgba(253, 240, 9, 0.8)', 
             borderColor: 'rgba(253, 240, 9, 0.8)',
