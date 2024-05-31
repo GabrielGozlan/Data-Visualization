@@ -160,7 +160,7 @@ The website can be accessed by opening `web/html/index.html`
 
 To access our website locally, you can first clone our project git clone https://github.com/com-480-data-visualization/project-2024-Maths-Olympiviz.git Then, change directory into the folder web/html/. Run the following command python -m http.server 8000 You can now access our website locally by typing http://0.0.0.0:8000/ into the browser.
 
-
+You can see our screen cast here: [Video](screencast.mp4)
 ## Late policy
 
 - < 24h: 80% of the grade for the milestone
