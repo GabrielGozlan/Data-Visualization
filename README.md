@@ -154,7 +154,7 @@ To access our website locally, you can first clone our project git clone https:/
 ## Milestone 3 (31st May, 5pm)
 
 **80% of the final grade**
-The report can be found here: [Report](com-480 process book.pdf)
+The report can be found here: [Report](com-480_process_book.pdf)
 
 The website can be accessed by opening `web/html/index.html`
 
