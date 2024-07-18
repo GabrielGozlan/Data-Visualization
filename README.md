@@ -9,11 +9,16 @@
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
 ## Accessing our website
-To access our website locally, you can first clone our project
-`git clone https://github.com/com-480-data-visualization/project-2024-Maths-Olympiviz.git`
-Then, change directory into the folder `./web`.
-Run the following command `python -m http.server`
-You can now access our website lcaolly by keying `http://0.0.0.0:8000/` into the browser.
+
+Our report: [Report](com-480_process_book.pdf)
+Our screen cast: [Video](screencast.mp4)
+
+To access our website locally, you can :
+- First clone our project git clone https://github.com/com-480-data-visualization/project-2024-Maths-Olympiviz.git .
+- Then, change directory into the folder web/html/ . 
+- Run the following command python -m http.server 8000 .
+You can now access our website locally by typing http://0.0.0.0:8000/ into the browser.
+
 
 ## Milestone 1 (29th March, 5pm)
 
